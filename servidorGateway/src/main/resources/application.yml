@@ -6,29 +6,29 @@ spring:
   cloud: 
    gateway:
       routes:
-      - id: serv-vuelos
+      - id: serv-customer
           #lb:// cuando se va a acceder a través de Eureka
-        uri: lb://servicio-vuelos #http://localhost:8080
+        uri: lb://customer-service #http://localhost:8080
         predicates:
-          - Path=/svuelos/**
+          - Path=/scustomer-service/**
         filters:
-          - RewritePath=/svuelos/*, /
+          - RewritePath=/scustomer-service/*, /
           
-      - id: serv-hoteles
+      - id: orders-service
           #lb:// cuando se va a acceder a través de Eureka
-        uri: lb://servicio-hoteles #http://localhost:8080
+        uri: lb://orders-service #http://localhost:8080
         predicates:
-          - Path=/shoteles/**
+          - Path=/sorders-service/**
         filters:
-          - RewritePath=/shoteles/*, /
+          - RewritePath=/sorders-service/*, /
           
-      - id: serv-reservas
+      - id: products-service
           #lb:// cuando se va a acceder a través de Eureka
-        uri: lb://servicio-reservas #http://localhost:8080
+        uri: lb://products-service #http://localhost:8080
         predicates:
-          - Path=/sreservas/**
+          - Path=/sproducts-service/**
         filters:
-          - RewritePath=/sreservas/*, /
+          - RewritePath=/sproducts-service/*, /
         
 eureka:                  
  client:
