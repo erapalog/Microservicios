@@ -1,0 +1,36 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: servidor-gateway
+  cloud: 
+   gateway:
+      routes:
+      - id: serv-customer
+          #lb:// cuando se va a acceder a través de Eureka
+        uri: lb://customer-service #http://localhost:8080
+        predicates:
+          - Path=/scustomer-service/**
+        filters:
+          - RewritePath=/scustomer-service/*, /
+          
+      - id: orders-service
+          #lb:// cuando se va a acceder a través de Eureka
+        uri: lb://orders-service #http://localhost:8080
+        predicates:
+          - Path=/sorders-service/**
+        filters:
+          - RewritePath=/sorders-service/*, /
+          
+      - id: products-service
+          #lb:// cuando se va a acceder a través de Eureka
+        uri: lb://products-service #http://localhost:8080
+        predicates:
+          - Path=/sproducts-service/**
+        filters:
+          - RewritePath=/sproducts-service/*, /
+        
+eureka:                  
+ client:
+  serviceUrl:
+   defaultZone: http://localhost:8761/eureka  
