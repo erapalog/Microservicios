@@ -24,7 +24,7 @@ public class CustomerController {
 	ResponseEntity<?> response = null;
 	
 	@GetMapping(value="/customer/getall", produces= MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<?> customerGetAll() {
+	public ResponseEntity<?> customerGetAll() {
 	
 		
 		List<Customer> getAllCustomersResponse=null;
